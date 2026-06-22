@@ -67,3 +67,7 @@ app.get("/logout",(req,res)=>{
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on port ${port}`);
 });
+const server = app.listen(port, '0.0.0.0', () => {...});
+
+server.keepAliveTimeout = 120000; // 120 seconds
+server.headersTimeout = 120000;   // must be >= keepAliveTimeout
