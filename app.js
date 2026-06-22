@@ -64,10 +64,10 @@ app.get("/logout",(req,res)=>{
     res.cookie("token","");
     res.redirect('/');
 })
-app.listen(port, '0.0.0.0', () => {
+const server = app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on port ${port}`);
 });
-const server = app.listen(port, '0.0.0.0', () => {...});
 
-server.keepAliveTimeout = 120000; // 120 seconds
-server.headersTimeout = 120000;   // must be >= keepAliveTimeout
+server.keepAliveTimeout = 120000;
+server.headersTimeout = 120000;
+
