@@ -4,7 +4,8 @@ const ejs = require('ejs');
 const userModel = require('./models/user');
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken');
-
+const port = process.env.PORT || 3000;
+   
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const { log } = require('console');
@@ -62,4 +63,4 @@ app.get("/logout",(req,res)=>{
     res.cookie("token","");
     res.redirect('/');
 })
-app.listen(3000)
+app.listen(port, () => console.log(`Running on ${port}`));
