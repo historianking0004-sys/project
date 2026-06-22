@@ -1,11 +1,17 @@
-const mongoose=require('mongoose');
-mongoose.connect(`mongodb://127.0.0.1:27017/auth`)
+const mongoose = require('mongoose');
 
-const userSchema=mongoose.Schema({
-    age:Number,
-    username:String,
-    email:String,
-    password:String
+// Use Atlas URI from Render, fallback to local for dev
+const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/auth';
+
+mongoose.connect(uri)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB error:', err));
+
+const userSchema = new mongoose.Schema({
+    age: Number,
+    username: String,
+    email: String,
+    password: String
 })
 
-module.exports=mongoose.model("user",userSchema);
+module.exports = mongoose.model("user", userSchema);
